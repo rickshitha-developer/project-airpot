@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lost & Found - SkyPort</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+   body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #f4f7fa;
+    }
+    .navbar-brand {
+      font-weight: 700;
+      color: #ffcc00 !important;
+    }
+
+    .hero-video {
+    
+      height: 320px;
+      overflow: hidden;
+	   position: relative; /* add this */
+  z-index: 0; 
+    }
+
+    .hero-video video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0.8;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(0, 30, 60, 0.6), rgba(0, 0, 0, 0.4));
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      color: white;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .hero-content i {
+      font-size: 2rem;
+      animation: floatIcon 3s ease-in-out infinite;
+      margin-bottom: 10px;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff; }
+      to { text-shadow: 0 0 20px #0d6efd, 0 0 30px #0d6efd; }
+    }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .lost-form {
+  max-width: 600px;
+  margin: 40px auto;
+  position: relative;
+  z-index: 10;
+  padding: 30px;
+  border-radius: 20px;
+  
+  animation: floatForm 1s ease-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 15px rgba(13, 110, 253, 0.25), 0 0 30px rgba(13, 110, 253, 0.15);
+}
+
+
+
+
+.lost-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+.input-group input,
+.form-control {
+  border-radius: 10px !important;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus,
+.form-control:focus {
+  box-shadow: 0 0 8px rgba(13, 110, 253, 0.5);
+  border-color: #0d6efd;
+}
+
+button[type="submit"] {
+  background: linear-gradient(to right, #0d6efd, #1a73e8);
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  padding: 12px;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"] i {
+  transition: transform 0.3s ease;
+}
+
+button[type="submit"]:hover i {
+  transform: translateX(5px);
+}
+
+
+    .info-card {
+      background: #e9f5ff;
+      border-left: 5px solid #0d6efd;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 600px;
+      border-radius: 10px;
+    }
+
+    .runway {
+      background-color: #0d6efd;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .timeline {
+      list-style: none;
+      padding-left: 20px;
+    }
+
+    .timeline li {
+      padding: 10px 0;
+      font-size: 1rem;
+      position: relative;
+    }
+
+    .timeline li::before {
+      content: "●";
+      color: #0d6efd;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+	 .footer {
+      background-color: #003366;
+      color: white;
+      padding: 60px 0;
+    }
+    .footer h5 {
+      font-weight: 600;
+    }
+    .footer a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .social i {
+      font-size: 24px;
+      margin-right: 15px;
+      color: #ffcc00;
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+	<a class="navbar-brand" href="/home"><i class="bi bi-airplane-engines-fill"></i> SkyPort</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+       <li class="nav-item"><a class="nav-link" href="/home"><i class="bi bi-house-door"></i> Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/book"><i class="bi bi-ticket-detailed"></i> Book</a></li>
+        <li class="nav-item"><a class="nav-link" href="/status"><i class="bi bi-clock-history"></i> Status</a></li>
+        <li class="nav-item"><a class="nav-link" href="/terminal"><i class="bi bi-building"></i> Terminal</a></li>
+        <li class="nav-item"><a class="nav-link  active" href="/report"><i class="bi bi-box-seam"></i> Report Lost Item</a></li>
+        <li class="nav-item"><a class="nav-link" href="/available"><i class="bi bi-person-gear"></i> Available Flights</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Hero Section -->
+<div class="hero-video">
+  <video autoplay muted loop>
+    <source src="https://videos.pexels.com/video-files/3230032/3230032-hd_1920_1080_25fps.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <i class="bi bi-send"></i>
+    <h1>Lost & Found Assistance</h1>
+  </div>
+</div>
+
+<!-- Form -->
+<form id="lostForm" class="lost-form">
+  <h4 class="mb-4 text-center"><i class="bi bi-clipboard-check"></i> Lost & Found Submission</h4>
+
+  <div class="text-center mb-3">
+    <span class="badge bg-info-subtle text-dark rounded-pill px-4 py-2">
+      <i class="bi bi-ui-checks-grid"></i> Step 1: Your Details
+    </span>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+    <input type="text" class="form-control" id="name" placeholder="Full Name" required>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text"><i class="bi bi-airplane"></i></span>
+    <input type="text" class="form-control" id="flight" placeholder="Flight Number (e.g. SP1023)" required>
+  </div>
+
+  <div class="text-center my-3">
+    <span class="badge bg-warning-subtle text-dark rounded-pill px-4 py-2">
+      <i class="bi bi-box"></i> Step 2: Item Information
+    </span>
+  </div>
+
+  <div class="form-floating mb-3">
+    <textarea class="form-control" placeholder="Describe the lost item" id="item" style="height: 100px" required></textarea>
+    <label for="item"><i class="bi bi-pencil-square"></i> Item Description</label>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+    <input type="date" class="form-control" id="date" required>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text"><i class="bi bi-envelope-at-fill"></i></span>
+    <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+  </div>
+
+  <div class="d-grid mt-4">
+    <button type="submit" class="btn btn-primary btn-lg shadow">
+      <i class="bi bi-send-check-fill"></i> Submit Lost Item Report
+    </button>
+  </div>
+</form>
+
+<!-- Tips -->
+<div class="info-card">
+  <h5><i class="bi bi-info-circle-fill text-primary"></i> Helpful Tips</h5>
+  <ul class="mb-0">
+    <li>Include brand, color, size details.</li>
+    <li>Describe where and when you last saw it.</li>
+    <li>Check your email frequently for updates.</li>
+  </ul>
+</div>
+
+<!-- Summary Modal -->
+<div class="modal fade" id="summaryModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-primary">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title"><i class="bi bi-clipboard-check-fill me-2"></i>Report Submitted</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Name:</strong> <span id="sName"></span></p>
+        <p><strong>Flight:</strong> <span id="sFlight"></span></p>
+        <p><strong>Item:</strong> <span id="sItem"></span></p>
+        <p><strong>Date:</strong> <span id="sDate"></span></p>
+        <p><strong>Email:</strong> <span id="sEmail"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-primary" onclick="window.print()"><i class="bi bi-printer"></i> Print</button>
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#trackModal" data-bs-dismiss="modal"><i class="bi bi-eye"></i> Track</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tracking Modal with Progress -->
+<div class="modal fade" id="trackModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content border-success">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title"><i class="bi bi-map-fill me-2"></i>Item Tracking</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="progressContainer">
+          <div class="progress mb-4" style="height: 20px;">
+            <div id="trackProgress" class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                 style="width: 0%;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              Tracking...
+            </div>
+          </div>
+        </div>
+        <div id="trackingSteps" style="display: none;">
+          <ul class="timeline">
+            <li><i class="bi bi-check-circle text-success"></i> Report Received</li>
+            <li><i class="bi bi-search text-info"></i> Terminal Search In Progress</li>
+            <li><i class="bi bi-box text-warning"></i> Item Located</li>
+            <li><i class="bi bi-envelope-check text-primary"></i> Confirmation Email Sent</li>
+            <li><i class="bi bi-hand-thumbs-up text-success"></i> Ready for Pickup</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="runway">
+  📦 Helping You Recover What Matters Most – SkyPort Lost & Found Services
+</div>
+
+<!-- Footer -->
+<footer class="footer bg-dark">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Services</h5>
+        <ul class="list-unstyled">
+          <li><a href="/book">Flight Booking</a></li>
+          <li><a href="/status">Status Check</a></li>
+          <li><a href="/terminal">Terminal Info</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>About SkyPort</h5>
+        <p>SkyPort is a student-built digital platform for learning web technologies through a flight booking simulation system.</p>
+      </div>
+      <div class="col-md-4">
+        <h5>Connect</h5>
+        <div class="social">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <p class="text-center mt-3 mb-0">&copy; 2025 SkyPort | All Rights Reserved | Contact : info@skyport.com </p>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script>
+  document.getElementById("lostForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const flight = document.getElementById("flight").value.trim();
+    const item = document.getElementById("item").value.trim();
+    const date = document.getElementById("date").value;
+    const email = document.getElementById("email").value.trim();
+
+       const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (!name || !flight || !item || !date || !email) {
+      alert("⚠️ Please fill in all the fields.");
+      return;
+    }
+    if (!emailValid) {
+      alert("📧 Invalid email address.");
+      return;
+    }
+
+    document.getElementById("sName").textContent = name;
+    document.getElementById("sFlight").textContent = flight;
+    document.getElementById("sItem").textContent = item;
+    document.getElementById("sDate").textContent = date;
+    document.getElementById("sEmail").textContent = email;
+
+    new bootstrap.Modal(document.getElementById("summaryModal")).show();
+    this.reset();
+  });
+
+  // Track modal progress animation
+  document.getElementById('trackModal').addEventListener('shown.bs.modal', () => {
+    const bar = document.getElementById("trackProgress");
+    const steps = document.getElementById("trackingSteps");
+    bar.style.width = "0%";
+    bar.setAttribute("aria-valuenow", "0");
+    steps.style.display = "none";
+
+    let progress = 0;
+    const interval = setInterval(() => {
+      if (progress >= 100) {
+        clearInterval(interval);
+        bar.textContent = "Tracking Complete";
+        steps.style.display = "block";
+      } else {
+        progress += 10;
+        bar.style.width = `${progress}%`;
+        bar.setAttribute("aria-valuenow", progress);
+      }
+    }, 200);
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

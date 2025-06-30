@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Terminal Map - SkyPort</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #f4f7fa;
+    }
+    .navbar-brand {
+      font-weight: 700;
+      color: #ffcc00 !important;
+    }
+    .terminal-map {
+      max-width: 1200px;
+      margin: 60px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    .terminal-map img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+    .zone-card {
+      border: 1px solid #dee2e6;
+      border-left: 6px solid #0d6efd;
+      border-radius: 8px;
+      padding: 15px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      transition: all 0.3s ease;
+      background-color: #f9fbff;
+    }
+    .zone-card:hover {
+      transform: scale(1.02);
+      background-color: #e8f0ff;
+    }
+    .zone-card img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .zone-text {
+      flex: 1;
+    }
+    .zone-title {
+      font-weight: 600;
+      color: #0d6efd;
+      margin-bottom: 5px;
+    }
+    .btn-custom {
+      margin-top: 30px;
+    }
+    .footer {
+      background-color: #003366;
+      color: white;
+      padding: 60px 0;
+    }
+    .footer h5 {
+      font-weight: 600;
+    }
+    .footer a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .social i {
+      font-size: 24px;
+      margin-right: 15px;
+      color: #ffcc00;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="/home"><i class="bi bi-airplane-engines-fill"></i> SkyPort</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/home"><i class="bi bi-house-door"></i> Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/book"><i class="bi bi-ticket-detailed"></i> Book</a></li>
+        <li class="nav-item"><a class="nav-link" href="/status"><i class="bi bi-clock-history"></i> Status</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/terminal"><i class="bi bi-building"></i> Terminal</a></li>
+        <li class="nav-item"><a class="nav-link" href="/report"><i class="bi bi-box-seam"></i> Report Lost Item</a></li>
+        <li class="nav-item"><a class="nav-link" href="/available"><i class="bi bi-person-gear"></i> Available Flights</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Terminal Map -->
+<div class="terminal-map">
+  <h2 class="text-center text-primary mb-4"><i class="bi bi-building"></i> Explore the SkyPort Terminal</h2>
+
+  <img src="https://storage.icograms.com/templates/thumbnails/airport-diagram.png" alt="Terminal Overview">
+
+  <div class="row g-4">
+
+    <!-- Gate A1-A10 -->
+    <div class="col-md-6">
+      <img src="https://c8.alamy.com/comp/2B86MGK/new-delhi-india-december-28-2019-domestic-departure-at-terminal-3-at-new-delhi-indra-gandhi-airport-in-india-2B86MGK.jpg" class="img-fluid rounded mb-2" alt="Gate A Zone">
+      <div class="zone-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/34/34568.png" alt="Gates">
+        <div class="zone-text">
+          <div class="zone-title">Gate A1–A10</div>
+          <div>Domestic Departures near East Wing</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gate B1-B5 -->
+    <div class="col-md-6">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRln8Ijx9LVM9K3MDt74Kt9yuE5Kzqq665mnw&s" class="img-fluid rounded mb-2" alt="International Arrivals">
+      <div class="zone-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/2886/2886665.png" alt="International Arrivals">
+        <div class="zone-text">
+          <div class="zone-title">Gate B1–B5</div>
+          <div>International Arrivals with customs</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Food Court -->
+    <div class="col-md-6">
+      <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/643105806.jpg?k=90c3ea3d32f7232d2ce5b848461d2dc097a6ab24738bb970e3fe548bd3577549&o=&hp=1" class="img-fluid rounded mb-2" alt="Food Court">
+      <div class="zone-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Food Court">
+        <div class="zone-text">
+          <div class="zone-title">Food Court</div>
+          <div>First floor near Gate A7 – wide variety of cuisines</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Security -->
+    <div class="col-md-6">
+      <img src="https://img.freepik.com/premium-photo/electronic-entrance-gate-card-people-pass-access-building-security-system-with-cards-passes_161422-4296.jpg" class="img-fluid rounded mb-2" alt="Security Area">
+      <div class="zone-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/944/944945.png" alt="Security">
+        <div class="zone-text">
+          <div class="zone-title">Security Check</div>
+          <div>Located at Entry Gate - mandatory for all passengers</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Baggage Claim -->
+    <div class="col-md-6">
+      <img src="https://airport.online/uploads/files/dallas-airport/guides/dfw-airport-baggage-claim-signange.webp" class="img-fluid rounded mb-2" alt="Baggage Zone">
+      <div class="zone-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/710/710610.png" alt="Baggage">
+        <div class="zone-text">
+          <div class="zone-title">Baggage Claim</div>
+          <div>Ground Floor – near Exit 2</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help Desk -->
+    <div class="col-md-6">
+      <img src="https://thumbs.dreamstime.com/b/information-desk-dubai-international-airport-17629779.jpg" class="img-fluid rounded mb-2" alt="Help Desk">
+      <div class="zone-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Help Desk">
+        <div class="zone-text">
+          <div class="zone-title">Help Desk</div>
+          <div>Main Entrance – assistance for all services</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shuttle Zone -->
+    <div class="col-md-6">
+      <img src="https://airport-world.com/wp-content/uploads/2023/08/HighC1.jpg" class="img-fluid rounded mb-2" alt="Shuttle Area">
+      <div class="zone-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/2920/2920252.png" alt="Shuttle Zone">
+        <div class="zone-text">
+          <div class="zone-title">Shuttle Zone</div>
+          <div>24x7 service from Gate C2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center btn-custom">
+    <button class="btn btn-outline-primary" onclick="highlightZones()">🔍 Highlight All</button>
+    <button class="btn btn-outline-secondary ms-2" onclick="resetZones()">❌ Clear Highlights</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer bg-dark mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Services</h5>
+        <ul class="list-unstyled">
+          <li><a href="/book">Flight Booking</a></li>
+          <li><a href="/status">Status Check</a></li>
+          <li><a href="/terminal">Terminal Info</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>About SkyPort</h5>
+        <p>SkyPort is a student-built digital platform for learning web technologies through a flight booking simulation system.</p>
+      </div>
+      <div class="col-md-4">
+        <h5>Connect</h5>
+        <div class="social">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <p class="text-center mt-3 mb-0">&copy; 2025 SkyPort | All Rights Reserved | Contact : info@skyport.com</p>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function highlightZones() {
+    document.querySelectorAll(".zone-card").forEach(card => {
+      card.style.boxShadow = "0 0 12px #0d6efd";
+    });
+  }
+
+  function resetZones() {
+    document.querySelectorAll(".zone-card").forEach(card => {
+      card.style.boxShadow = "none";
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Passenger Services - SkyPort</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 20%;
+      right: 5%;
+      width: 250px;
+      height: 250px;
+      background: url('https://cdn-icons-png.flaticon.com/512/2165/2165197.png') no-repeat center;
+      background-size: contain;
+      opacity: 0.05;
+      z-index: 0;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: #ffcc00 !important;
+    }
+
+    .services-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: linear-gradient(to bottom right, #ffffff, #f0f9ff);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.08);
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      color: #007bff;
+      font-weight: 700;
+      text-shadow: 1px 1px 2px #ccc;
+    }
+
+    .section-title {
+      margin-top: 40px;
+      color: #003366;
+      border-bottom: 3px solid #007bff;
+      padding-bottom: 10px;
+      font-size: 1.25rem;
+      position: relative;
+    }
+
+    .section-title::before {
+      content: "✦";
+      color: #007bff;
+      margin-right: 8px;
+    }
+
+    input, select, textarea {
+      border: 1px solid #ced4da;
+      border-left: 5px solid #0d6efd;
+      padding-left: 12px;
+      background-color: #f9fcff;
+      transition: all 0.3s ease-in-out;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(13,110,253,0.25);
+      transform: scale(1.01);
+    }
+
+    form .form-control::placeholder {
+      color: #adb5bd;
+    }
+
+    .allowed-list li::before {
+      content: "✔ ";
+      color: #198754;
+      font-weight: bold;
+    }
+
+    .prohibited-list li::before {
+      content: "✖ ";
+      color: #dc3545;
+      font-weight: bold;
+    }
+
+    .allowed-list li,
+    .prohibited-list li {
+      animation: fadeInLeft 0.5s ease-in;
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .highlight {
+      font-weight: 700;
+      color: #0d6efd;
+    }
+
+    button.btn-success {
+      background-color: #0d6efd;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 25px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    button.btn-success:hover {
+      background-color: #084298;
+      transform: scale(1.05);
+    }
+
+    .footer {
+      background-color: #003366;
+      color: white;
+      padding: 60px 0;
+      margin-top: 60px;
+    }
+
+    .footer h5 {
+      font-weight: 600;
+    }
+
+    .footer a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .social i {
+      font-size: 24px;
+      margin-right: 15px;
+      color: #ffcc00;
+      transition: 0.3s ease;
+    }
+
+    .social i:hover {
+      color: white;
+      transform: scale(1.2);
+    }
+
+    .modal-content {
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,123,255,0.2);
+    }
+
+    .modal-header {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .badge.bg-dark {
+      background: #000;
+      border-radius: 12px;
+      padding: 6px 12px;
+      box-shadow: 0 0 10px #007bff;
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { box-shadow: 0 0 10px #007bff; }
+      to   { box-shadow: 0 0 20px #00bfff; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="/home"><i class="bi bi-airplane-engines-fill"></i> SkyPort</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="/home"><i class="bi bi-house-door"></i> Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/book"><i class="bi bi-ticket-detailed"></i> Book</a></li>
+        <li class="nav-item"><a class="nav-link" href="/status"><i class="bi bi-clock-history"></i> Status</a></li>
+        <li class="nav-item"><a class="nav-link" href="/terminal"><i class="bi bi-building"></i> Terminal</a></li>
+        <li class="nav-item"><a class="nav-link" href="/report"><i class="bi bi-box-seam"></i> Report Lost Item</a></li>
+        <li class="nav-item"><a class="nav-link" href="/available"><i class="bi bi-person-gear"></i> Available Flights</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="services-container">
+  <h2 class="text-center"><i class="bi bi-person-lines-fill"></i> <strong>Passenger Services</strong></h2>
+
+  <!-- Check-In Form -->
+  <div class="section-title"><strong>🛫 Check-In Form</strong></div>
+  <form id="checkinForm">
+    <div class="mb-3">
+      <label for="flightId" class="form-label"><i class="bi bi-airplane"></i> <strong>Flight ID</strong></label>
+      <input type="text" class="form-control" id="flightId" placeholder="e.g., SK123" required>
+    </div>
+    <div class="mb-3">
+      <label for="passengerName" class="form-label"><i class="bi bi-person"></i> <strong>Passenger Name</strong></label>
+      <input type="text" class="form-control" id="passengerName" placeholder="e.g., John Doe" required>
+    </div>
+    <div class="mb-3">
+      <label for="seatSelection" class="form-label"><i class="bi bi-person-seat"></i> <strong>Seat Selection</strong></label>
+      <select class="form-select" id="seatSelection" required>
+        <option value="">-- Choose Seat --</option>
+        <option>Window</option>
+        <option>Aisle</option>
+        <option>Middle</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="baggage" class="form-label"><i class="bi bi-bag-check"></i> <strong>Baggage Info</strong></label>
+      <textarea class="form-control" id="baggage" rows="3" placeholder="e.g., 1 check-in bag, 1 cabin bag"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success"><i class="bi bi-check-circle-fill"></i> Submit Check-In</button>
+  </form>
+
+  <!-- Baggage Guidelines -->
+  <div class="section-title"><strong>🎒 Baggage Guidelines</strong></div>
+  <div class="p-3 rounded bg-light shadow-sm mb-4">
+    <p class="fw-bold text-success"><i class="bi bi-check2-circle"></i> Allowed Items:</p>
+    <ul class="allowed-list ps-4">
+      <li>One cabin bag (max 7kg)</li>
+      <li>One check-in bag (max 20kg)</li>
+      <li>Handbags, laptops, power banks</li>
+      <li>Medicines (with prescriptions)</li>
+    </ul>
+    <hr>
+    <p class="fw-bold text-danger"><i class="bi bi-x-circle-fill"></i> Prohibited Items:</p>
+    <ul class="prohibited-list ps-4">
+      <li>Sharp objects (knives, scissors)</li>
+      <li>Flammable liquids</li>
+      <li>Explosives, fireworks</li>
+      <li>Battery packs above 100Wh</li>
+    </ul>
+  </div>
+
+  <!-- Airport Facilities -->
+  <div class="section-title"><strong>🏢 Airport Facilities</strong></div>
+  <div class="bg-white p-4 rounded shadow-sm">
+    <ul class="list-unstyled ps-1">
+      <li><i class="bi bi-cup-hot-fill text-warning"></i> <strong>Lounges:</strong> Sky Lounge, Relax+ Club (Business class access)</li>
+      <li><i class="bi bi-egg-fried text-danger"></i> <strong>Food Courts:</strong> Multi-cuisine dining on Level 2 with vegan options</li>
+      <li><i class="bi bi-bag-fill text-success"></i> <strong>Shops:</strong> Duty-Free, Souvenirs, Travel Accessories, Books</li>
+      <li><i class="bi bi-wifi text-info"></i> <strong>Free Wi-Fi:</strong> High-speed internet (3 hrs free)</li>
+      <li><i class="bi bi-lightning-charge text-primary"></i> <strong>Charging Points:</strong> Available at every gate</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="checkinModal" tabindex="-1" aria-labelledby="checkinModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title"><i class="bi bi-check2-circle"></i> <strong>Check-In Confirmed</strong></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p><i class="bi bi-person-badge-fill"></i> <strong>Passenger:</strong><br><span id="modalPassenger" class="highlight"></span></p>
+        <p><i class="bi bi-airplane"></i> <strong>Flight ID:</strong><br><span id="modalFlight" class="highlight"></span></p>
+        <p><i class="bi bi-ticket-detailed-fill"></i> <strong>Check-In Code:</strong><br><span id="modalCode" class="badge bg-dark p-2 fs-5"></span></p>
+        <p><i class="bi bi-clock"></i> <strong>Date & Time:</strong><br><span id="modalTime" class="highlight"></span></p>
+        <p class="alert alert-info mt-3">📌 Please <strong>save or note your Check-In Code</strong>. It will be required at the boarding gate.</p>
+        <p class="text-muted"><i class="bi bi-camera"></i> Tip: Take a screenshot for easy access at the entrance.</p>
+        <p class="text-success">🧳 <strong>Proceed to security check and your gate. Happy Flying!</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer bg-dark">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Services</h5>
+        <ul class="list-unstyled">
+          <li><a href="/book">Flight Booking</a></li>
+          <li><a href="/status">Status Check</a></li>
+          <li><a href="/terminal">Terminal Info</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>About SkyPort</h5>
+        <p>SkyPort is a student-built digital platform for learning web technologies through a flight booking simulation system.</p>
+      </div>
+      <div class="col-md-4">
+        <h5>Connect</h5>
+        <div class="social">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <p class="text-center mt-3 mb-0">&copy; 2025 SkyPort | All Rights Reserved | Contact: info@skyport.com</p>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function generateRandomCode(length = 6) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let code = '';
+    for (let i = 0; i < length; i++) {
+      code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return code;
+  }
+
+  document.getElementById("checkinForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const passenger = document.getElementById("passengerName").value;
+    const flight = document.getElementById("flightId").value;
+    const now = new Date();
+    const timeStr = now.toLocaleString();
+    document.getElementById("modalPassenger").textContent = passenger;
+    document.getElementById("modalFlight").textContent = flight;
+    document.getElementById("modalTime").textContent = timeStr;
+    document.getElementById("modalCode").textContent = generateRandomCode();
+    const checkinModal = new bootstrap.Modal(document.getElementById("checkinModal"));
+    checkinModal.show();
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
